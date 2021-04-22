@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -12,6 +13,8 @@ namespace Odev
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("altın       gümüş     platin      paladyum");
+        A:
             List<Deger> list = new List<Deger>();
             XDocument xDocument = XDocument.Load("https://www.borsaistanbul.com/datfile/kmtpkpnsxml");
             list = xDocument.Descendants("TL").Select(o => new Deger
@@ -23,12 +26,20 @@ namespace Odev
 
             }).ToList();
 
+           
+            Console.Write((list[0].Altin) + "  " + (list[0].Gumus) + "  " + (list[0].Platin) + "  " + (list[0].Paladyum) +"\n");
 
             TextWriter Writer = new StreamWriter("MetalFiyat.text");
-            Writer.WriteLine("altın       gümüş     platin      paladyum");
-            Writer.Write((list[0].Altin) + "  " + (list[0].Gumus) + "  " + (list[0].Platin) + "  " + (list[0].Paladyum));
+            Writer.WriteLine("altın       gümüş     platin      paladyum ");
+            Writer.WriteLine((list[0].Altin) + "  " + (list[0].Gumus) + "  " + (list[0].Platin) + "  " + (list[0].Paladyum) );
             Writer.Close();
+            Thread.Sleep(1000);
+           
+                goto A;
+            
+           
         }
+        
 
     }
 
