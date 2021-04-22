@@ -22,7 +22,14 @@ namespace Odev
                 Paladyum = (string)o.Element("paladyumdeger")
 
             }).ToList();
+
+
+            TextWriter Writer = new StreamWriter("MetalFiyat.text");
+            Writer.WriteLine("altın       gümüş     platin      paladyum");
+            Writer.Write((list[0].Altin) + "  " + (list[0].Gumus) + "  " + (list[0].Platin) + "  " + (list[0].Paladyum));
+            Writer.Close();
         }
+
     }
 
 
